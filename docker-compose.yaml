@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  parking-slot-reservation-service:
+    build: .
+    ports:
+      - "9090:9090"
+  database:
+    ports:
+      - "5432:5432"
+    image: "postgres:15-alpine"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "qwerty"
+      POSTGRES_DB: "reservation_db"
+

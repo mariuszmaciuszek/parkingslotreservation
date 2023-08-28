@@ -1,0 +1,47 @@
+app:
+  scheduler:
+    enabled: true
+    fixedDelay: 60000
+    initialDelay: 20000
+    inMinutesPeriod: 15
+
+server:
+  port: 9090
+  servlet:
+    context-path: "/api/v1alpha1/"
+
+spring:
+  mvc:
+    problemdetails:
+      enabled: true
+  application:
+    name: "parking-slot-reservation-service"
+  main:
+    banner-mode: "console"
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: UTC
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    url: "jdbc:postgresql://database:5432/reservation_db"
+    username: "root"
+    password: "qwerty"
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 5000
+  sql:
+    init:
+      platform: "postgres"
+
+logging:
+  level:
+    com.mariuszmaciuszek: debug

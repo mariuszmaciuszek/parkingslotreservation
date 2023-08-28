@@ -1,0 +1,51 @@
+app:
+  scheduler:
+    enabled: false
+    fixedDelay: 60000
+    initialDelay: 20000
+    inMinutesPeriod: 200
+
+server:
+  port: 9090
+  servlet:
+    context-path: "/api/v1alpha1/"
+
+spring:
+  application:
+    name: "parking-slot-reservation-service"
+  mvc:
+    problemdetails:
+      enabled: true
+  main:
+    banner-mode: "console"
+  jpa:
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    driver-class-name: "org.testcontainers.jdbc.ContainerDatabaseDriver"
+    url: "jdbc:tc:postgresql:15-alpine:///reservation_test_db"
+    username: "root"
+    password: "qwerty"
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 5000
+  sql:
+    init:
+      platform: "postgres"
+
+logging:
+  level:
+    com.mariuszmaciuszek: debug
+    org.hibernate: info
+    org.flywaydb: DEBUG
